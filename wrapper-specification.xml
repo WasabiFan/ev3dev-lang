@@ -1,0 +1,1190 @@
+<spec>
+  <version>0.9.1, rev 3</version>
+  <constant>
+    <name>INPUT_AUTO</name>
+    <type>String</type>
+    <nil/>
+    <description>Automatic input selection</description>
+  </constant>
+  <constant>
+    <name>OUTPUT_AUTO</name>
+    <type>String</type>
+    <nil/>
+    <description>Automatic output selection</description>
+  </constant>
+  <constant>
+    <name>INPUT_1</name>
+    <type>String</type>
+    <value>in1</value>
+    <description>Sensor port 1</description>
+  </constant>
+  <constant>
+    <name>INPUT_2</name>
+    <type>String</type>
+    <value>in2</value>
+    <description>Sensor port 2</description>
+  </constant>
+  <constant>
+    <name>INPUT_3</name>
+    <type>String</type>
+    <value>in3</value>
+    <description>Sensor port 3</description>
+  </constant>
+  <constant>
+    <name>INPUT_4</name>
+    <type>String</type>
+    <value>in4</value>
+    <description>Sensor port 4</description>
+  </constant>
+  <constant>
+    <name>OUTPUT_A</name>
+    <type>String</type>
+    <value>outA</value>
+    <description>Motor port A</description>
+  </constant>
+  <constant>
+    <name>OUTPUT_B</name>
+    <type>String</type>
+    <value>outB</value>
+    <description>Motor port B</description>
+  </constant>
+  <constant>
+    <name>OUTPUT_C</name>
+    <type>String</type>
+    <value>outC</value>
+    <description>Motor port C</description>
+  </constant>
+  <constant>
+    <name>OUTPUT_D</name>
+    <type>String</type>
+    <value>outD</value>
+    <description>Motor port D</description>
+  </constant>
+  <class>
+    <name>Motor</name>
+    <lower>motor</lower>
+    <inherit>device</inherit>
+    <constructor>
+      <parameter>
+        <name>Port</name>
+        <lower>port</lower>
+        <type>String</type>
+        <description>The port to control. Specify a blank string (or the undefined/null value for the language) for an automatic search. It is recommended to use the `OUTPUT_*` constants.</description>
+      </parameter>
+      <parameter>
+        <name>Type</name>
+        <lower>type</lower>
+        <type>String</type>
+        <description>The type of motor to accept. Can be left empty or undefined (in the languages that support it) to specify a wildcard.</description>
+      </parameter>
+    </constructor>
+    <constant>
+      <name>Large</name>
+      <lower>large</lower>
+      <type>String</type>
+      <value>tacho</value>
+      <description></description>
+    </constant>
+    <constant>
+      <name>Medium</name>
+      <lower>medium</lower>
+      <type>String</type>
+      <value>minitacho</value>
+      <description></description>
+    </constant>
+    <property>
+      <name>Type</name>
+      <attribute>type</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Port Name</name>
+      <Camel>PortName</Camel>
+      <camel>portName</camel>
+      <attribute>port_name</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>State</name>
+      <attribute>state</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Run</name>
+      <attribute>run</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <method>
+      <name>Reset</name>
+      <lower>reset</lower>
+      <return>Void</return>
+      <description>Sets the `reset` motor property to `1`, which causes the motor driver to reset all of the parameters.</description>    
+    </method>    
+    <property>
+      <name>Duty Cycle</name>
+      <Camel>DutyCycle</Camel>
+      <camel>dutyCycle</camel>
+      <attribute>duty_cycle</attribute>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Pulses Per Second</name>
+      <Camel>PulsesPerSecond</Camel>
+      <camel>pulsesPerSecond</camel>
+      <attribute>pulses_per_second</attribute>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </property>    
+    <property>
+      <name>Position</name>
+      <attribute>position</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Run Mode</name>
+      <Camel>RunMode</Camel>
+      <camel>runMode</camel>
+      <attribute>run_mode</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+      <constant>
+        <name>Forever</name>
+        <lower>forever</lower>
+        <type>String</type>
+        <value>forever</value>
+        <description></description>
+      </constant>
+      <constant>
+        <name>Time</name>
+        <lower>time</lower>
+        <type>String</type>
+        <value>time</value>
+        <description></description>
+      </constant>
+      <constant>
+        <name>Position</name>
+        <lower>position</lower>
+        <type>String</type>
+        <value>position</value>
+        <description></description>
+      </constant>
+    </property>
+    <property>
+      <name>Stop Modes</name>
+      <Camel>StopModes</Camel>
+      <camel>stopModes</camel>
+      <attribute>stop_modes</attribute>
+      <type>String Array</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Stop Mode</name>
+      <Camel>StopMode</Camel>
+      <camel>stopMode</camel>
+      <attribute>stop_mode</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>    
+    <property>
+      <name>Regulation Mode</name>
+      <Camel>RegulationMode</Camel>
+      <camel>regulationMode</camel>
+      <attribute>regulation_mode</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Position Mode</name>
+      <Camel>PositionMode</Camel>
+      <camel>positionMode</camel>
+      <attribute>position_mode</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+        <property>
+      <name>Duty Cycle SP</name>
+      <Camel>DutyCycleSP</Camel>
+      <camel>dutyCycleSP</camel>
+      <attribute>duty_cycle_sp</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Pulses Per Second SP</name>
+      <Camel>PulsesPerSecondSP</Camel>
+      <camel>pulsesPerSecondSP</camel>
+      <attribute>pulses_per_second_sp</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Time SP</name>
+      <Camel>TimeSP</Camel>
+      <camel>timeSP</camel>
+      <attribute>time_sp</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>    
+    <property>
+      <name>Position SP</name>
+      <Camel>PositionSP</Camel>
+      <camel>positionSP</camel>
+      <attribute>position_sp</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Ramp Up SP</name>
+      <Camel>RampUpSP</Camel>
+      <camel>rampUpSP</camel>
+      <attribute>ramp_up_sp</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Ramp Down SP</name>
+      <Camel>RampDownSP</Camel>
+      <camel>rampDownSP</camel>
+      <attribute>ramp_down_sp</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Speed Regulation P</name>
+      <Camel>SpeedRegulationP</Camel>
+      <camel>speedRegulationP</camel>
+      <attribute>speed_regulation_p</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Speed Regulation I</name>
+      <Camel>SpeedRegulationI</Camel>
+      <camel>speedRegulationI</camel>
+      <attribute>speed_regulation_i</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Speed Regulation D</name>
+      <Camel>SpeedRegulationD</Camel>
+      <camel>speedRegulationD</camel>
+      <attribute>speed_regulation_d</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Speed Regulation K</name>
+      <Camel>SpeedRegulationK</Camel>
+      <camel>speedRegulationK</camel>
+      <attribute>speed_regulation_k</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <special-property>
+      <name>Device Index</name>
+      <Camel>DeviceIndex</Camel>
+      <camel>deviceIndex</camel>
+      <lower>device_index</lower>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </special-property>
+    <special-property>
+      <name>Connected</name>
+      <lower>connected</lower>
+      <type>Boolean</type>
+      <read/>
+      <description></description>
+    </special-property>
+    <pre-lua>
+Motor.ModeOff = "off"
+Motor.ModeOn  = "on"
+
+Motor.RunModeForever  = "forever"
+Motor.RunModeTime     = "time"
+Motor.RunModePosition = "position"
+    
+Motor.PolarityModePositive = "positive"
+Motor.PolarityModeNegative = "negative"
+    
+Motor.PositionModeAbsolute = "absolute"
+Motor.PositionModeRelative = "relative"
+
+function Motor:init(port, motor_types)
+
+  local m = { port_name = { port } }
+  
+  if (motor_types ~= nil) then
+    m["type"] = motor_types
+  end
+  
+  Device.init(self, "tacho-motor", "tacho-motor", m)
+
+  if (self:connected()) then
+    self._type = self:getAttrString("type")
+    self._port = self:getAttrString("port_name")
+  else
+    self._type = nil
+    self._port = nil
+  end
+end
+</pre-lua>
+    <post-lua>
+------------------------------------------------------------------------------
+-- LargeMotor
+
+LargeMotor = class(Motor)
+
+function LargeMotor:init(port)
+  Motor.init(self, port, { "tacho" } )
+end
+
+------------------------------------------------------------------------------
+-- MediumMotor
+
+MediumMotor = class(Motor)
+
+function MediumMotor:init(port)
+  Motor.init(self, port, { "minitacho" } )
+end
+</post-lua>
+  </class>
+  <class>
+    <name>DC Motor</name>
+    <Camel>DCMotor</Camel>
+    <camel>dcMotor</camel>
+    <lower>dc_motor</lower>
+    <inherit>device</inherit>
+    <constructor>
+      <parameter>
+        <name>Port</name>
+        <lower>port</lower>
+        <type>String</type>
+        <description>The port to control. Specify a blank string (or the undefined/null value for the language) for an automatic search. It is recommended to use the `OUTPUT_*` constants.</description>
+      </parameter>
+    </constructor>
+    <property>
+      <name>Type Name</name>
+      <Camel>TypeName</Camel>
+      <camel>typeName</camel>
+      <lower>type_name</lower>
+      <attribute>name</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Port Name</name>
+      <Camel>PortName</Camel>
+      <camel>portName</camel>
+      <attribute>port_name</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Command</name>
+      <attribute>command</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+      <constant>
+        <name>Run</name>
+        <lower>run</lower>
+        <type>String</type>
+        <value>run</value>
+        <description></description>
+      </constant>
+      <constant>
+        <name>Brake</name>
+        <lower>brake</lower>
+        <type>String</type>
+        <value>brake</value>
+        <description></description>
+      </constant>
+      <constant>
+        <name>Coast</name>
+        <lower>coast</lower>
+        <type>String</type>
+        <value>coast</value>
+        <description></description>
+      </constant>
+    </property>
+    <property>
+      <name>Commands</name>
+      <attribute>commands</attribute>
+      <type>String Array</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Duty Cycle</name>
+      <Camel>DutyCycle</Camel>
+      <camel>dutyCycle</camel>
+      <attribute>duty_cycle</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Ramp Down MS</name>
+      <Camel>RampDownMS</Camel>
+      <camel>rampDownMS</camel>
+      <attribute>ramp_down_ms</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Ramp Up MS</name>
+      <Camel>RampUpMS</Camel>
+      <camel>rampUpMS</camel>
+      <attribute>ramp_up_ms</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Polarity</name>
+      <attribute>polarity</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+      <constant>
+        <name>Normal</name>
+        <lower>normal</lower>
+        <type>String</type>
+        <value>normal</value>
+        <description></description>
+      </constant>
+      <constant>
+        <name>Inverted</name>
+        <lower>inverted</lower>
+        <type>String</type>
+        <value>inverted</value>
+        <description></description>
+      </constant>
+    </property>
+    <special-property>
+      <name>Device Index</name>
+      <Camel>DeviceIndex</Camel>
+      <camel>deviceIndex</camel>
+      <lower>device_index</lower>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </special-property>
+    <special-property>
+      <name>Connected</name>
+      <lower>connected</lower>
+      <type>Boolean</type>
+      <read/>
+      <description></description>
+    </special-property>
+  </class>  
+  <class>
+    <name>Servo Motor</name>
+    <Camel>ServoMotor</Camel>
+    <camel>servoMotor</camel>
+    <lower>servo_motor</lower>
+    <inherit>device</inherit>
+    <constructor>
+      <parameter>
+        <name>Port</name>
+        <lower>port</lower>
+        <type>String</type>
+        <description>The port to control. Specify a blank string (or the undefined/null value for the language) for an automatic search. It is recommended to use the `OUTPUT_*` constants.</description>
+      </parameter>
+    </constructor>
+    <property>
+      <name>Type Name</name>
+      <Camel>TypeName</Camel>
+      <camel>typeName</camel>
+      <lower>type_name</lower>
+      <attribute>name</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Port Name</name>
+      <Camel>PortName</Camel>
+      <camel>portName</camel>
+      <attribute>port_name</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Command</name>
+      <attribute>command</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+      <constant>
+        <name>Run</name>
+        <lower>run</lower>
+        <type>String</type>
+        <value>run</value>
+        <description></description>
+      </constant>
+      <constant>
+        <name>Float</name>
+        <lower>float</lower>
+        <type>String</type>
+        <value>float</value>
+        <description></description>
+      </constant>
+    </property>
+    <property>
+      <name>Position</name>
+      <attribute>position</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Rate</name>
+      <attribute>rate</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Max Pulse MS</name>
+      <Camel>MaxPulseMS</Camel>
+      <camel>maxPulseMS</camel>
+      <attribute>max_pulse_ms</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Mid Pulse MS</name>
+      <Camel>MidPulseMS</Camel>
+      <camel>midPulseMS</camel>
+      <attribute>mid_pulse_ms</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Min Pulse MS</name>
+      <Camel>MinPulseMS</Camel>
+      <camel>minPulseMS</camel>
+      <attribute>min_pulse_ms</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Polarity</name>
+      <attribute>polarity</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+      <constant>
+        <name>Normal</name>
+        <lower>normal</lower>
+        <type>String</type>
+        <value>normal</value>
+        <description></description>
+      </constant>
+      <constant>
+        <name>Inverted</name>
+        <lower>inverted</lower>
+        <type>String</type>
+        <value>inverted</value>
+        <description></description>
+      </constant>
+    </property>
+    <special-property>
+      <name>Device Index</name>
+      <Camel>DeviceIndex</Camel>
+      <camel>deviceIndex</camel>
+      <lower>device_index</lower>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </special-property>
+    <special-property>
+      <name>Connected</name>
+      <lower>connected</lower>
+      <type>Boolean</type>
+      <read/>
+      <description></description>
+    </special-property>
+  </class>  
+  <class>
+    <name>Sensor</name>
+    <lower>sensor</lower>
+    <inherit>device</inherit>
+    <constructor>
+      <parameter>
+        <name>Port</name>
+        <lower>port</lower>
+        <type>String</type>
+        <description>The port to control. Specify a blank string (or the undefined/null value for the language) for an automatic search. It is recommended to use the `INPUT_*` constants.</description>
+      </parameter>
+      <parameter>
+        <name>Types</name>
+        <lower>types</lower>
+        <type>String Array</type>
+        <description>The types of sensors (device IDs) to allow. Leave the array empty or undefined (in the languages that support it) to specify a wildcard.</description>
+      </parameter>
+    </constructor>    
+    <property>
+      <name>Type Name</name>
+      <Camel>TypeName</Camel>
+      <camel>typeName</camel>
+      <lower>type_name</lower>
+      <attribute>name</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Port Name</name>
+      <Camel>PortName</Camel>
+      <camel>portName</camel>
+      <attribute>port_name</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Modes</name>
+      <attribute>modes</attribute>
+      <type>String Array</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Mode</name>
+      <attribute>mode</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>    
+    <property>
+      <name>Num Values</name>
+      <Camel>NumValues</Camel>
+      <camel>numValues</camel>
+      <attribute>num_values</attribute>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </property>
+    <method>
+      <name>Get Value</name>
+      <lower>value</lower>
+      <return>Number</return>
+      <parameter>
+        <name>Index</name>
+        <lower>index</lower>
+        <type>Number</type>
+        <description></description>
+      </parameter>
+      <description>Gets the raw value at the specified index</description>    
+    </method>    
+    <special-property>
+      <name>Device Index</name>
+      <Camel>DeviceIndex</Camel>
+      <camel>deviceIndex</camel>
+      <lower>device_index</lower>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </special-property>
+    <special-property>
+      <name>Connected</name>
+      <lower>connected</lower>
+      <type>Boolean</type>
+      <read/>
+      <description></description>
+    </special-property>
+    <pre-lua>
+Sensor.NXTTouch       = "lego-nxt-touch"
+Sensor.NXTLight       = "lego-nxt-light"
+Sensor.NXTSound       = "lego-nxt-sound"
+Sensor.NXTUltrasonic  = "lego-nxt-ultrasonic"
+
+Sensor.EV3Touch       = "lego-ev3-touch"
+Sensor.EV3Color       = "ev3-uart-29"
+Sensor.EV3Ultrasonic  = "ev3-uart-30"
+Sensor.EV3Gyro        = "ev3-uart-32"
+Sensor.EV3Infrared    = "ev3-uart-33"
+
+function Sensor:init(port, sensor_types)
+  local m = { port_name = { port } }
+  
+  if (sensor_types ~= nil) then
+    m["name"] = sensor_types
+  end
+  
+  Device.init(self, "msensor", "sensor", m)
+
+  if (self:connected()) then
+    self._type = self:getAttrString("name")
+    self._port = self:getAttrString("port_name")
+  else
+    self._type = nil
+    self._port = nil
+  end
+end
+
+</pre-lua>
+    <post-lua>
+function Sensor:value(id)
+
+  if (id == nil) then
+    id = 0
+  end
+
+  return self:getAttrInt("value"..id)
+end
+
+function Sensor:floatValue(id)
+
+  if (id == nil) then
+    id = 0
+  end
+
+  local scale = math.pow(10, -self:getAttrInt("dp"))
+  return self:getAttrInt("value"..id) * scale
+end
+
+function Sensor:dp()
+  return self:getAttrInt("dp")
+end
+    </post-lua>
+  </class>
+  <class>
+    <name>I2C Sensor</name>
+    <Camel>I2CSensor</Camel>
+    <camel>i2CSensor</camel>
+    <lower>i2c_sensor</lower>
+    <inherit>sensor</inherit>
+    <constructor>
+      <parameter>
+        <name>I2C Address</name>
+        <Camel>I2CAddress</Camel>
+        <camel>i2CAddress</camel>
+        <lower>i2c_address</lower>
+        <type>String</type>
+        <description>The I2C address that will be used to narrow down the search. Only necessary if multiple I2C devices are connected to the same port.</description>
+      </parameter>
+    </constructor>    
+    <property>
+      <name>Address</name>
+      <attribute>address</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Poll MS</name>
+      <Camel>PollMS</Camel>
+      <camel>pollMS</camel>
+      <attribute>poll_ms</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>FW Version</name>
+      <Camel>FWVersion</Camel>
+      <camel>fwVersion</camel>
+      <attribute>fw_version</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>
+    <pre-lua>
+function I2CSensor:init(port, i2cAddress)
+  local m = { port_name = { port } }
+  m["name"] = { "nxt-i2c-sensor" }
+  
+  if (i2cAddress ~= nil) then
+    m["address"] = i2cAddress
+  end
+  
+  Device.init(self, "msensor", "sensor", m)
+
+  if (self:connected()) then
+    self._type = self:getAttrString("name")
+    self._port = self:getAttrString("port_name")
+  else
+    self._type = nil
+    self._port = nil
+  end
+end
+
+</pre-lua>
+    <post-lua>
+------------------------------------------------------------------------------
+-- TouchSensor
+
+TouchSensor = class(Sensor)
+
+function TouchSensor:init(port)
+  Sensor.init(self, port, { Sensor.EV3Touch })
+end
+
+function TouchSensor:pressed()
+  return self:value(0)
+end
+
+------------------------------------------------------------------------------
+-- ColorSensor
+
+ColorSensor = class(Sensor)
+
+ColorSensor.ModeReflect = "COL-REFLECT"
+ColorSensor.ModeAmbient = "COL-AMBIENT"
+ColorSensor.ModeColor   = "COL-COLOR"
+
+function ColorSensor:init(port)
+  Sensor.init(self, port, { Sensor.EV3Color } )
+end
+
+------------------------------------------------------------------------------
+-- UltrasonicSensor
+
+UltrasonicSensor = class(Sensor)
+
+UltrasonicSensor.ModeDistCM   = "US-DIST-CM"
+UltrasonicSensor.ModeDistIN   = "US-DIST-IN"
+UltrasonicSensor.ModeListen   = "US-LISTEN"
+UltrasonicSensor.ModeSingleCM = "US-SI-CM"
+UltrasonicSensor.ModeSingleIN = "US-SI-IN"
+
+function UltrasonicSensor:init(port)
+  Sensor.init(self, port, { Sensor.EV3Ultrasonic } )
+end
+
+------------------------------------------------------------------------------
+-- GyroSensor
+
+GyroSensor = class(Sensor)
+
+GyroSensor.ModeAngle         = "GYRO-ANG"
+GyroSensor.ModeSpeed         = "GYRO-RATE"
+GyroSensor.ModeAngleAndSpeed = "GYRO-G&amp;A"
+
+function GyroSensor:init(port)
+  Sensor.init(self, port, { Sensor.EV3Gyro } )
+end
+
+------------------------------------------------------------------------------
+-- InfraredSensor
+
+InfraredSensor = class(Sensor)
+
+InfraredSensor.ModeProximity = "IR-PROX"
+InfraredSensor.ModeIRSeeker  = "IR-SEEK"
+InfraredSensor.ModeIRRemote  = "IR-REMOTE"
+
+function InfraredSensor:init(port)
+  Sensor.init(self, port, { Sensor.EV3Infrared } )
+end
+</post-lua>    
+  </class>
+  <class>
+    <name>Power Supply</name>
+    <Camel>PowerSupply</Camel>
+    <camel>powerSupply</camel>
+    <lower>power_supply</lower>
+    <inherit>device</inherit>
+    <constructor>
+      <parameter>
+        <name>Device</name>
+        <lower>device</lower>
+        <type>String</type>
+        <description>The name of the device to control (as listed in `/sys/class/power_supply/`). If left blank or unspecified, the default `legoev3-battery` should be used. `Connected` should be set to true if the device is found.</description>
+      </parameter>
+    </constructor>    
+    <property>
+      <name>Current Now</name>
+      <Camel>CurrentNow</Camel>
+      <camel>currentNow</camel>
+      <attribute>current_now</attribute>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Voltage Now</name>
+      <Camel>VoltageNow</Camel>
+      <camel>voltageNow</camel>
+      <attribute>voltage_now</attribute>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Voltage Min Design</name>
+      <Camel>VoltageMinDesign</Camel>
+      <camel>voltageMinDesign</camel>
+      <attribute>voltage_min_design</attribute>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Voltage Max Design</name>
+      <Camel>VoltageMaxDesign</Camel>
+      <camel>voltageMaxDesign</camel>
+      <attribute>voltage_max_design</attribute>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Technology</name>
+      <attribute>technology</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>    
+    <property>
+      <name>Type</name>
+      <attribute>type</attribute>
+      <type>String</type>
+      <read/>
+      <description></description>
+    </property>    
+    <special-property>
+      <name>Voltage Volts</name>
+      <Camel>VoltageVolts</Camel>
+      <camel>voltageVolts</camel>
+      <lower>voltage_volts</lower>
+      <type>Float</type>
+      <read/>
+      <description></description>
+    </special-property>
+    <special-property>
+      <name>Connected</name>
+      <lower>connected</lower>
+      <type>Boolean</type>
+      <read/>
+      <description></description>
+    </special-property>  
+    <pre-lua>
+function PowerSupply:init(device)
+  if (device ~= nil) then
+    self._path = sys_power..device.."/"
+  else
+    self._path = sys_power.."legoev3-battery/"
+  end
+
+  local file = io.open(self._path.."voltage_now")
+  if (file ~= nil) then 
+    file:close()
+  else
+    self._path = nil
+  end
+end
+</pre-lua>
+    <post-lua>
+function PowerSupply:currentAmps()
+  return self:getAttrInt("current_now") / 1000
+end
+
+function PowerSupply:voltageVolts()
+  return self:getAttrInt("voltage_now") / 1000000
+end
+
+Battery = PowerSupply()
+</post-lua>
+  </class>
+  <class>
+    <name>LED</name>
+    <lower>led</lower>
+    <inherit>device</inherit>
+    <constructor>
+      <parameter>
+        <name>Device</name>
+        <lower>device</lower>
+        <type>String</type>
+        <description>The name of the device to control (as listed in `/sys/class/leds/`). `Connected` should be set to true if the device is found. If left blank or unspecified, `Connected` shold be set to false.</description>
+      </parameter>
+    </constructor>    
+    <property>
+      <name>Brightness</name>
+      <attribute>brightness</attribute>
+      <type>Number</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <property>
+      <name>Max Brightness</name>
+      <Camel>MaxBrightness</Camel>
+      <camel>maxBrightness</camel>
+      <attribute>max_brightness</attribute>
+      <type>Number</type>
+      <read/>
+      <description></description>
+    </property>
+    <property>
+      <name>Trigger</name>
+      <attribute>trigger</attribute>
+      <type>String</type>
+      <read/>
+      <write/>
+      <description></description>
+    </property>
+    <special-property>
+      <name>Connected</name>
+      <lower>connected</lower>
+      <type>Boolean</type>
+      <read/>
+      <description></description>
+    </special-property>  
+    <pre-lua>
+function LED:init(name)
+  self._path = sys_class.."leds/"..name.."/"
+
+  local file = io.open(self._path.."brightness")
+  if (file ~= nil) then
+    file:close()
+  else
+    self._path = nil
+  end
+end
+</pre-lua>
+    <post-lua>
+function LED:on()
+  self:setAttrInt("brightness", self:maxBrightness())
+end
+
+function LED:off()
+  self:setAttrInt("brightness", 0)
+end
+
+function LED:flash(interval)
+  self:setTrigger("timer")
+  if ((interval ~= nil) and (interval ~= 0)) then
+    self:setOnDelay(interval)
+    self:setOffDelay(interval)
+  end 
+end
+
+function LED:setOnDelay(ms)
+  self:setAttrInt("delay_on", ms)
+end
+
+function LED:setOffDelay(ms)
+  self:setAttrInt("delay_off", ms)
+end
+  
+function LED:triggers()
+  local file = io.open(self._path.."trigger", "r")
+  if (file ~= nil) then 
+    local m = file:read()
+    file:close()
+    if (m.len) then
+      return m
+    end
+  end
+  
+  return ""
+end
+
+ledRedRight   = LED("ev3:red:right")
+ledRedLeft    = LED("ev3:red:left")
+ledGreenRight = LED("ev3:green:right")
+ledGreenLeft  = LED("ev3:green:left")
+
+function LED.redOn()
+  ledRedRight:on()
+  ledRedLeft:on()
+end
+
+function LED.redOff()
+  ledRedRight:off()
+  ledRedLeft:off()
+end
+
+function LED.greenOn()
+  ledGreenRight:on()
+  ledGreenLeft:on()
+end
+
+function LED.greenOff()
+  ledGreenRight:off()
+  ledGreenLeft:off()
+end
+
+function LED.allOn()
+  self:redOn()
+  self:greenOn()
+end
+
+function LED.allOff()
+  self:redOff()
+  self:greenOff()
+end
+</post-lua>
+  </class>  
+</spec>
